@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cufroy0ureuky"]
+
+[ext_resource type="Texture2D" uid="uid://sl6iewufcwko" path="res://Assets/Sprites/Dungeon_tileset/frames/ui_heart_full.png" id="1_cixvg"]
+[ext_resource type="Script" uid="uid://bttisrs7xypbv" path="res://Scripts/heart.gd" id="1_jgxw8"]
+[ext_resource type="Texture2D" uid="uid://d1d3i76rokews" path="res://Assets/Sprites/Dungeon_tileset/frames/ui_heart_empty.png" id="2_v4aiu"]
+
+[node name="Heart" type="Node2D"]
+script = ExtResource("1_jgxw8")
+
+[node name="Full_heart" type="Sprite2D" parent="."]
+position = Vector2(15.7083, 24.5)
+scale = Vector2(3.41667, 3.41667)
+texture = ExtResource("1_cixvg")
+
+[node name="Empty_heart" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15.7083, 24.5)
+scale = Vector2(3.41667, 3.41667)
+texture = ExtResource("2_v4aiu")

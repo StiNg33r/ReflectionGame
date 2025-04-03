@@ -1,0 +1,201 @@
+[gd_scene load_steps=22 format=3 uid="uid://bi3votn2nx7rq"]
+
+[ext_resource type="Texture2D" uid="uid://byofumu7ruyrx" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_m_hit_anim_f0.png" id="1_d3yjk"]
+[ext_resource type="Script" uid="uid://cmdt3ryo27sy" path="res://Scripts/player/player.gd" id="1_mlj5a"]
+[ext_resource type="PackedScene" uid="uid://bt3hbmpdyuw4h" path="res://Scenes/player/sword.tscn" id="2_1uxch"]
+[ext_resource type="Texture2D" uid="uid://dvccjfofwekr" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_idle_anim_f0.png" id="2_ooq44"]
+[ext_resource type="Texture2D" uid="uid://bj5e34tnwc2ue" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_idle_anim_f1.png" id="3_qfryc"]
+[ext_resource type="Texture2D" uid="uid://d0trfo6qidjvo" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_idle_anim_f2.png" id="4_mlj5a"]
+[ext_resource type="Texture2D" uid="uid://b6il7v8xaib27" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_idle_anim_f3.png" id="5_1uxch"]
+[ext_resource type="Texture2D" uid="uid://1iqm7fvgc3p" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_run_anim_f0.png" id="6_qju0v"]
+[ext_resource type="Texture2D" uid="uid://b14uxfoqc6ql4" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_run_anim_f1.png" id="7_fwwdg"]
+[ext_resource type="Texture2D" uid="uid://cn71unysl0dav" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_run_anim_f2.png" id="8_2lgo1"]
+[ext_resource type="Texture2D" uid="uid://1ndftyrd1ec6" path="res://Assets/Sprites/Dungeon_tileset/frames/knight_f_run_anim_f3.png" id="9_d87de"]
+[ext_resource type="Script" uid="uid://uxbemqwq3e3b" path="res://Scripts/player/Player_Idle.gd" id="11_mlj5a"]
+[ext_resource type="PackedScene" uid="uid://8fxu6rpejl1" path="res://Scenes/player/player_state_machine.tscn" id="11_qfryc"]
+[ext_resource type="Script" uid="uid://d3hsuva26luno" path="res://Scripts/player/Player_Run.gd" id="14_qju0v"]
+[ext_resource type="AudioStream" uid="uid://bvsi8f4mmuhhi" path="res://Assets/Sounds/damage.wav" id="15_je1os"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u736u"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l447x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d3yjk")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ooq44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qfryc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mlj5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1uxch")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_qju0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fwwdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2lgo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d87de")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_qfryc"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Hit"]
+}
+
+[sub_resource type="Animation" id="Animation_mlj5a"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_1uxch"]
+length = 0.571429
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Run"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qju0v"]
+_data = {
+&"Hit": SubResource("Animation_qfryc"),
+&"Idle": SubResource("Animation_mlj5a"),
+&"Run": SubResource("Animation_1uxch")
+}
+
+[node name="Knight" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_mlj5a")
+
+[node name="Sword" parent="." instance=ExtResource("2_1uxch")]
+position = Vector2(1, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_u736u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l447x")
+animation = &"Idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qju0v")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Player_State_Machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("11_qfryc")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="Player_State_Machine" node_paths=PackedStringArray("player", "anim")]
+script = ExtResource("11_mlj5a")
+player = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="Run" type="Node2D" parent="Player_State_Machine" node_paths=PackedStringArray("player", "anim")]
+script = ExtResource("14_qju0v")
+player = NodePath("../..")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_je1os")
+volume_db = -10.0

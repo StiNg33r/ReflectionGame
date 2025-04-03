@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://bt3hbmpdyuw4h"]
+
+[ext_resource type="Script" uid="uid://gs8bvpl4v2km" path="res://Scripts/sword.gd" id="1_gqtqy"]
+[ext_resource type="Texture2D" uid="uid://bn58oejvtd5ry" path="res://Assets/Sprites/Dungeon_tileset/frames/weapon_saw_sword.png" id="2_ryigx"]
+[ext_resource type="AudioStream" uid="uid://rihf7rr4tjau" path="res://Assets/Sounds/bounce.wav" id="3_ryigx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_goa0h"]
+size = Vector2(23, 38)
+
+[sub_resource type="Animation" id="Animation_6wdhb"]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.395366),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.395366),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d6wag"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kb2vl"]
+_data = {
+&"Attack": SubResource("Animation_6wdhb"),
+&"RESET": SubResource("Animation_d6wag")
+}
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_gqtqy")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+position = Vector2(0, -3)
+texture = ExtResource("2_ryigx")
+
+[node name="Area2D" type="Area2D" parent="Pivot"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_goa0h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kb2vl")
+}
+
+[node name="Attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ryigx")
+pitch_scale = 1.28
+
+[connection signal="timeout" from="Attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
