@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dafldf1kqu53w"]
+[gd_scene load_steps=23 format=3 uid="uid://dafldf1kqu53w"]
 
 [ext_resource type="Script" uid="uid://ba7plyd0nnofy" path="res://Scripts/imp/imp.gd" id="1_ivxlw"]
 [ext_resource type="Texture2D" uid="uid://bux51s47l0hss" path="res://Assets/Sprites/Dungeon_tileset/frames/imp_idle_anim_f0.png" id="1_lfxki"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dlt1o7bwunpaq" path="res://Scenes/states/state_machine.tscn" id="9_a2thc"]
 [ext_resource type="Script" uid="uid://dy7f5xy8df44m" path="res://Scripts/imp/Imp_Idle.gd" id="10_8otfq"]
 [ext_resource type="Script" uid="uid://bgytpumsrqrmt" path="res://Scripts/imp/Imp_Chase.gd" id="11_8otfq"]
+[ext_resource type="Script" uid="uid://qmcscrf16m24" path="res://Scripts/imp/imp_controller.gd" id="11_cuq7g"]
+[ext_resource type="Script" uid="uid://br8dab15pxj07" path="res://Scripts/imp/imp_state_machine.gd" id="11_gx5f0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpbr4"]
 animations = [{
@@ -114,6 +116,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_gx5f0"]
 resource_name = "Hit"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,11 +175,10 @@ _data = {
 &"RESET": SubResource("Animation_se12o")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xs4i4"]
-radius = 11.0
-height = 26.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx5f0"]
 
 [node name="Imp" type="CharacterBody2D"]
+z_index = -2
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_ivxlw")
@@ -200,13 +202,15 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 6)
-shape = SubResource("CapsuleShape2D_xs4i4")
+position = Vector2(1, 12)
+shape = SubResource("RectangleShape2D_gx5f0")
 
 [node name="State_Machine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("9_a2thc")]
+script = ExtResource("11_gx5f0")
 initial_state = NodePath("Idle")
 
-[node name="Node2D" type="Node2D" parent="State_Machine"]
+[node name="Imp_controller" type="Node2D" parent="State_Machine"]
+script = ExtResource("11_cuq7g")
 
 [node name="Idle" type="Node2D" parent="State_Machine"]
 script = ExtResource("10_8otfq")
@@ -217,4 +221,14 @@ script = ExtResource("11_8otfq")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
 
-[connection signal="timeout" from="AttackTimer" to="State_Machine/Chase" method="_on_attack_timer_timeout"]
+[node name="PosUpdate" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="StateChangeTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="State_Machine/Imp_controller" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="PosUpdate" to="State_Machine/Imp_controller" method="_on_pos_update_timeout"]
+[connection signal="timeout" from="StateChangeTimer" to="State_Machine" method="_on_state_change_timer_timeout"]

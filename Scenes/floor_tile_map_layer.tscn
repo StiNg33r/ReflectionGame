@@ -55,5 +55,6 @@ texture = ExtResource("1_b6640")
 sources/0 = SubResource("TileSetAtlasSource_ce8ce")
 
 [node name="FloorTileMapLayer" type="TileMapLayer"]
+z_index = -11
 tile_set = SubResource("TileSet_l8qj1")
 script = ExtResource("2_ce8ce")

@@ -7,6 +7,7 @@
 radius = 7.07107
 
 [node name="Mushroom" type="Node2D"]
+z_index = -3
 script = ExtResource("1_0q7t7")
 
 [node name="Area2D" type="Area2D" parent="."]

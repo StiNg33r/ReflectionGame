@@ -3,6 +3,7 @@ class_name Player
 @onready var sword = $Sword
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
+var is_alive = true
 var max_health = 3
 var health = 3:
 	set(value):
@@ -19,7 +20,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	Global.emit_signal("player_pos", self.global_position)
+	pass
 
 func _physics_process(delta: float) -> void:
 	if velocity.x > 0:
@@ -43,3 +44,7 @@ func is_full_hp() -> bool:
 func get_heal(heal_amount: int):
 	health += 1
 	Signals.emit_signal("player_got_heal", health)
+
+
+func _on_player_pos_update_timeout() -> void:
+	Global.emit_signal("player_pos", self.global_position)

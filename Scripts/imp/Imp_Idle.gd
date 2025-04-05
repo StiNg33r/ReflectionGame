@@ -15,7 +15,8 @@ func enter():
 
 func update(delta: float) -> void:
 	distance = (player_pos - body.global_position).length()
-	if distance < 200:
+	if distance < 200 and distance > 70:
+	#if distance > 60:
 		transition(self, "Chase")
 
 func physics_update(delta: float) -> void:

@@ -30,8 +30,11 @@ func attack():
 		anim.play("Attack")
 		var bullets = detector.get_overlapping_areas()
 		for bullet in bullets:
-			bounce()
+			bullet = bullet as Bullet
 			bullet.target_group = "enemies"
+			if !bullet.is_active:
+				break
+			bounce()
 			bullet.bounce()
 			#bullet.direction = -bullet.direction
 			bullet.direction = direction
