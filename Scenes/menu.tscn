@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp04exqq7tj32"]
+
+[ext_resource type="Script" uid="uid://cg841234xwbdm" path="res://Scripts/menu.gd" id="1_1rerr"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_1rerr")
+metadata/_edit_vertical_guides_ = [0.0, 1152.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1163.0
+offset_bottom = 646.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 40.0
+grow_horizontal = 2
+patch_margin_left = 64
+patch_margin_right = 64
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Menu
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.5
+offset_top = 76.0
+offset_right = 74.5
+offset_bottom = 189.0
+grow_horizontal = 2
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -56.5
+offset_right = 74.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 135.0
+offset_right = 74.5
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings
+
+"
+
+[connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/SettingsButton" to="." method="_on_settings_button_pressed"]

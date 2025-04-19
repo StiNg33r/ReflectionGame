@@ -1,7 +1,16 @@
 extends Node2D
 class_name StateMachine
 
+signal is_active_change(status: bool)
+
 @export var initial_state: State
+
+var is_active = true:
+	set(value):
+		is_active = value
+		set_physics_process(is_active)
+		set_process(is_active)
+		emit_signal("is_active_change", is_active)
 
 var current_state: State
 var states: Dictionary = {}
@@ -24,6 +33,8 @@ func _physics_process(delta: float) -> void:
 		current_state.physics_update(delta)
 
 func on_transition(state: State, new_state_name: String):
+	if !is_active:
+		return
 	if state != current_state:
 		return
 	

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmr2jphs51q4g"]
+
+[ext_resource type="Script" uid="uid://b80qgx0v40qb1" path="res://Scripts/defs/default_bullet.gd" id="1_bl6fj"]
+[ext_resource type="Texture2D" uid="uid://dt18wcj4qx15i" path="res://Assets/Sprites/bullet.png" id="2_nau3l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmebf"]
+radius = 5.0
+height = 12.0
+
+[node name="Default_Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_bl6fj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nau3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fmebf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

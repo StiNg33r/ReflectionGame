@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://chf3a7pdbxbum"]
 
-[ext_resource type="Script" uid="uid://dv1jrvo82its1" path="res://Scripts/player_ui.gd" id="1_dxtgh"]
+[ext_resource type="Script" uid="uid://dv1jrvo82its1" path="res://Scripts/ui/player_ui.gd" id="1_dxtgh"]
 [ext_resource type="PackedScene" uid="uid://cufroy0ureuky" path="res://Scenes/heart.tscn" id="1_ohrjl"]
 
 [node name="PlayerUI" type="CanvasLayer"]
