@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://boq3e1avasn85"]
+
+[ext_resource type="PackedScene" uid="uid://cmr2jphs51q4g" path="res://Scenes/default_bullet.tscn" id="1_w7y3y"]
+[ext_resource type="Script" uid="uid://dm5jb2oj77jf6" path="res://Scripts/orange_bullet.gd" id="2_185in"]
+[ext_resource type="Texture2D" uid="uid://b82t6vd0tw5vj" path="res://Assets/Sprites/orange_bullet.png" id="3_185in"]
+
+[node name="Orange_bullet" instance=ExtResource("1_w7y3y")]
+script = ExtResource("2_185in")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_185in")

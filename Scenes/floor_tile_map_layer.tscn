@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxqvikfbwnwj7"]
 
 [ext_resource type="Texture2D" uid="uid://c4hf66dbxd6wk" path="res://Assets/Sprites/Dungeon_tileset/atlas_floor-16x16.png" id="1_b6640"]
-[ext_resource type="Script" uid="uid://dnd8wgl7cvkv6" path="res://Scripts/tile_map_layer.gd" id="2_ce8ce"]
+[ext_resource type="Script" uid="uid://dnd8wgl7cvkv6" path="res://Scripts/defs/tile_map_layer.gd" id="2_ce8ce"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ce8ce"]
 texture = ExtResource("1_b6640")

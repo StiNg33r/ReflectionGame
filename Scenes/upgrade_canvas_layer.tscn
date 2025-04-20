@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs5w11h51pj7b"]
+
+[ext_resource type="PackedScene" uid="uid://c5ipfm2mwqlsn" path="res://Scenes/upgrade_card.tscn" id="1_wvewn"]
+[ext_resource type="Script" uid="uid://bk27qdt4w6rnt" path="res://Scripts/upgrade_canvas_layer.gd" id="1_y3106"]
+
+[node name="UpgradeCanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_y3106")
+metadata/_edit_horizontal_guides_ = [650.0, 326.0]
+metadata/_edit_vertical_guides_ = [1150.0, 0.0]
+
+[node name="Cards" type="Node2D" parent="."]
+position = Vector2(5, 0)
+
+[node name="UpgradeCard" parent="Cards" instance=ExtResource("1_wvewn")]
+position = Vector2(10, 124)
+
+[node name="UpgradeCard2" parent="Cards" instance=ExtResource("1_wvewn")]
+position = Vector2(410, 124)
+
+[node name="UpgradeCard3" parent="Cards" instance=ExtResource("1_wvewn")]
+position = Vector2(810, 124)
