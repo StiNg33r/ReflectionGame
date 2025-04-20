@@ -186,9 +186,8 @@ script = ExtResource("1_kweqt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yaqe6")
-animation = &"Run"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.784542
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 2.75)
@@ -211,7 +210,6 @@ initial_state = NodePath("Idle")
 [node name="shaman_controller" type="Node2D" parent="State_Machine"]
 script = ExtResource("12_vnm8f")
 attack_time = 3.5
-speed = 80.0
 
 [node name="Idle" type="Node2D" parent="State_Machine"]
 script = ExtResource("13_xpyec")

@@ -2,11 +2,13 @@ extends State
 
 @onready var body: CharacterBody2D = $"../.."
 @onready var anim: AnimationPlayer = $"../../AnimationPlayer"
+@onready var player_pos_updater: PlayerPosUpdater = $"../../PlayerPosUpdater"
+
 var speed = 20.0
 var player_pos: Vector2
 var distance: float
 func _ready() -> void:
-	Global.player_pos.connect(_on_player_pos_update)
+	player_pos_updater.player_pos_updated.connect(_on_player_pos_update)
 
 
 func enter():
@@ -16,7 +18,6 @@ func enter():
 func update(delta: float) -> void:
 	distance = (player_pos - body.global_position).length()
 	if distance < 200 and distance > 70:
-	#if distance > 60:
 		transition(self, "Chase")
 
 func physics_update(delta: float) -> void:

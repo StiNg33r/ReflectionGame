@@ -1,0 +1,148 @@
+[gd_scene load_steps=19 format=3 uid="uid://cqcvy4c0nup2w"]
+
+[ext_resource type="PackedScene" uid="uid://hiprvc6egrh6" path="res://Scenes/default_enemy.tscn" id="1_d5xlb"]
+[ext_resource type="Texture2D" uid="uid://cdod2bod8tovt" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_idle_anim_f0.png" id="2_k13yb"]
+[ext_resource type="Texture2D" uid="uid://ywsf47gy0vg5" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_idle_anim_f1.png" id="3_ar0jx"]
+[ext_resource type="Texture2D" uid="uid://buhgyxj28wpfg" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_idle_anim_f2.png" id="4_xy3im"]
+[ext_resource type="Texture2D" uid="uid://ixtw7gur58pa" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_idle_anim_f3.png" id="5_t6s61"]
+[ext_resource type="Texture2D" uid="uid://bjb6472bx7ggi" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_run_anim_f0.png" id="6_dvh8b"]
+[ext_resource type="Texture2D" uid="uid://crt124btihdt2" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_run_anim_f1.png" id="7_v80jc"]
+[ext_resource type="Texture2D" uid="uid://bycpwdmeeibei" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_run_anim_f2.png" id="8_dxn7k"]
+[ext_resource type="Texture2D" uid="uid://cvpfe4ctcfxmn" path="res://Assets/Sprites/Dungeon_tileset/frames/orc_shaman_run_anim_f3.png" id="9_urd01"]
+[ext_resource type="Script" uid="uid://ccyrv5uxdb6el" path="res://Scripts/shaman/Shaman_Idle.gd" id="10_t6s61"]
+[ext_resource type="Script" uid="uid://b2663tbwtiptu" path="res://Scripts/shaman/Shaman_Run.gd" id="11_dvh8b"]
+[ext_resource type="Script" uid="uid://c1262r7k7fkc7" path="res://Scripts/shaman/Shaman_Run_To_Player.gd" id="12_v80jc"]
+[ext_resource type="Script" uid="uid://bypr8rnb6xpva" path="res://Scripts/shaman_controller.gd" id="13_dvh8b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n82kd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k13yb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ar0jx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xy3im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t6s61")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dvh8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v80jc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dxn7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_urd01")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4ld1"]
+size = Vector2(19, 29)
+
+[sub_resource type="Animation" id="Animation_2c3yt"]
+length = 0.571429
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Idle"]
+}
+
+[sub_resource type="Animation" id="Animation_tmtga"]
+length = 0.571429
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.285714, 0.428571),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Run"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxngq"]
+_data = {
+&"Idle": SubResource("Animation_2c3yt"),
+&"Run": SubResource("Animation_tmtga")
+}
+
+[node name="Shaman_new" instance=ExtResource("1_d5xlb")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_n82kd")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1.5, 8.5)
+shape = SubResource("RectangleShape2D_v4ld1")
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_rxngq")
+}
+
+[node name="StateMachine" parent="." index="5" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node2D" parent="StateMachine" index="0"]
+script = ExtResource("10_t6s61")
+
+[node name="Run" type="Node2D" parent="StateMachine" index="1"]
+script = ExtResource("11_dvh8b")
+
+[node name="RunToPlayer" type="Node2D" parent="StateMachine" index="2"]
+script = ExtResource("12_v80jc")
+
+[node name="Controller" parent="." index="7"]
+script = ExtResource("13_dvh8b")

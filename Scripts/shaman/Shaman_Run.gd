@@ -2,7 +2,9 @@ extends State
 
 @onready var body: CharacterBody2D = $"../.."
 @onready var anim: AnimationPlayer = $"../../AnimationPlayer"
-@onready var controller: EnemyController = $"../shaman_controller"
+@onready var controller: EnemyController = $"../../Controller"
+@onready var player_pos_updater: PlayerPosUpdater = $"../../PlayerPosUpdater"
+
 var player_pos: Vector2
 var direction: Vector2
 var speed = 90.0
@@ -11,8 +13,8 @@ var level
 func _ready() -> void:
 	
 	
-	Global.player_pos.connect(_on_player_pos_update)
-	speed = controller.speed
+	player_pos_updater.player_pos_updated.connect(_on_player_pos_update)
+	speed = controller.move_speed
 
 
 func enter():

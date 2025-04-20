@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bi3votn2nx7rq" path="res://Scenes/player/knight.tscn" id="2_dtjkg"]
 [ext_resource type="PackedScene" uid="uid://chf3a7pdbxbum" path="res://Scenes/player_ui.tscn" id="2_xq3o0"]
 [ext_resource type="PackedScene" uid="uid://b7icio6ho3wy0" path="res://Scenes/walls_tile_map_layer.tscn" id="3_btda1"]
-[ext_resource type="PackedScene" uid="uid://dafldf1kqu53w" path="res://Scenes/imp.tscn" id="3_eglq2"]
 [ext_resource type="PackedScene" uid="uid://bt0082d8frwwg" path="res://Scenes/bullet.tscn" id="4_rsyfn"]
 [ext_resource type="AudioStream" uid="uid://cpauebrwl7y3o" path="res://Assets/Sounds/bg_music.wav" id="8_2yvf5"]
 [ext_resource type="PackedScene" uid="uid://cie5i4trgy4mc" path="res://Scenes/mushroom.tscn" id="9_3ihge"]
-[ext_resource type="PackedScene" uid="uid://b1r7ck5ajqptu" path="res://Scenes/shaman.tscn" id="10_akkqd"]
+[ext_resource type="PackedScene" uid="uid://b42mgdyml5uru" path="res://Scenes/imp.tscn" id="11_1rqgg"]
 [ext_resource type="PackedScene" uid="uid://cb0wha7g05j30" path="res://Scenes/chest.tscn" id="11_8v7by"]
 [ext_resource type="PackedScene" uid="uid://cs5w11h51pj7b" path="res://Scenes/upgrade_canvas_layer.tscn" id="12_1rqgg"]
+[ext_resource type="PackedScene" uid="uid://cqcvy4c0nup2w" path="res://Scenes/shaman_new.tscn" id="12_mwmob"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_akkqd"]
 polygon = PackedVector2Array(-9, -275, -8, -41, -4, -270, 761, -271, 763, -280)
@@ -37,17 +37,8 @@ tile_map_data = PackedByteArray("AAAOAO//AAACAAEAAAANAO//AAACAAEAAAAQAO//AAACAAE
 [node name="Knight" parent="." instance=ExtResource("2_dtjkg")]
 position = Vector2(238, -157)
 
-[node name="Imp" parent="." instance=ExtResource("3_eglq2")]
-position = Vector2(588, -137)
-
 [node name="Bullet" parent="." instance=ExtResource("4_rsyfn")]
 position = Vector2(144, -174)
-
-[node name="Imp2" parent="." instance=ExtResource("3_eglq2")]
-position = Vector2(674, -234)
-
-[node name="Imp3" parent="." instance=ExtResource("3_eglq2")]
-position = Vector2(576, -60)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_2yvf5")
@@ -57,18 +48,6 @@ autoplay = true
 [node name="Mushroom" parent="." instance=ExtResource("9_3ihge")]
 position = Vector2(350, -107)
 
-[node name="Imp4" parent="." instance=ExtResource("3_eglq2")]
-position = Vector2(191, -45)
-
-[node name="Shaman" parent="." instance=ExtResource("10_akkqd")]
-position = Vector2(100, -88)
-
-[node name="Shaman2" parent="." instance=ExtResource("10_akkqd")]
-position = Vector2(592, -174)
-
-[node name="Shaman3" parent="." instance=ExtResource("10_akkqd")]
-position = Vector2(548, -14)
-
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_akkqd")
 
@@ -76,3 +55,28 @@ occluder = SubResource("OccluderPolygon2D_akkqd")
 position = Vector2(72, -150)
 
 [node name="UpgradeCanvasLayer" parent="." instance=ExtResource("12_1rqgg")]
+
+[node name="Imp" parent="." instance=ExtResource("11_1rqgg")]
+position = Vector2(559, -118)
+collision_layer = 1
+collision_mask = 1
+
+[node name="Imp2" parent="." instance=ExtResource("11_1rqgg")]
+position = Vector2(192, -77)
+collision_layer = 1
+collision_mask = 1
+
+[node name="Imp3" parent="." instance=ExtResource("11_1rqgg")]
+position = Vector2(579, -50)
+
+[node name="Imp4" parent="." instance=ExtResource("11_1rqgg")]
+position = Vector2(506, -32)
+
+[node name="Shaman_new" parent="." instance=ExtResource("12_mwmob")]
+position = Vector2(552, -176)
+
+[node name="Shaman_new2" parent="." instance=ExtResource("12_mwmob")]
+position = Vector2(414, -59)
+
+[node name="Shaman_new3" parent="." instance=ExtResource("12_mwmob")]
+position = Vector2(390, -201)
